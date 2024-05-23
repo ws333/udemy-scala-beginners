@@ -1,6 +1,5 @@
 package challenges
 
-// def main(args: Array[String]): Unit = {
 object challenges extends App {
 
   def greet(name: String, age: Int): String =
