@@ -29,12 +29,10 @@ object challenges extends App {
   def isPrime(n: Int): Boolean = {
     //
     def check(divider: Int): Boolean = {
-      if (divider == 1) {
+      if (divider == 1)
         true
-      } else if (n % divider == 0) {
-        false
-      } else
-        check(divider - 1)
+      else
+        n % divider != 0 && check(divider - 1)
     }
 
     check(n - 1)
