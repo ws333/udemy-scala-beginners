@@ -10,10 +10,12 @@ object challenges extends App {
   def factorial(n: Int): Int = {
     if (n == 0) 1
     else
-      n * factorial(n - 1)
+      val step = if (n > 0) -1 else 1
+      n * factorial(n + step)
   }
 
-  println(factorial(3))
+  println(factorial(-5))
+  println(factorial(5))
 
   def fibo(n: Int): Int = {
     if (n <= 1)
