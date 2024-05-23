@@ -1,15 +1,16 @@
 package lectures.part4power
 
 import exercises._
+import lectures.part2oop.Enums.Permissions
 
 object AllThePatterns extends App {
 
   // 1 - constants
   val x: Any = "Scala"
   val constants = x match {
-    case 1 => "a number"
-    case "Scala" => "THE Scala"
-    case true => "The Truth"
+    case 1              => "a number"
+    case "Scala"        => "THE Scala"
+    case true           => "The Truth"
     case AllThePatterns => "A singleton object"
   }
 
@@ -25,9 +26,9 @@ object AllThePatterns extends App {
   }
 
   // 3 - tuples
-  val aTuple = (1,2)
+  val aTuple = (1, 2)
   val matchATuple = aTuple match {
-    case (1, 1) =>
+    case (1, 1)         =>
     case (something, 2) => s"I've found $something"
   }
 
@@ -41,29 +42,34 @@ object AllThePatterns extends App {
   // PMs can be nested with CCs as well
   val aList: MyList[Int] = Cons(1, Cons(2, Empty))
   val matchAList = aList match {
-    case Empty =>
+    case Empty                              =>
     case Cons(head, Cons(subhead, subtail)) =>
   }
 
   // 5 - list patterns
-  val aStandardList = List(1,2,3,42)
+  val aStandardList = List(1, 2, 3, 42)
   val standardListMatching = aStandardList match {
-    case List(1, _, _, _) => // extractor - advanced
-    case List(1, _*) => // list of arbitrary length - advanced
-    case 1 :: List(_) => // infix pattern
-    case List(1,2,_) :+ 42 => "lala"// infix pattern
+    case List(1, _, _, _)    => // extractor - advanced
+    case List(1, _*)         => // list of arbitrary length - advanced
+    case 1 :: List(_)        => // infix pattern
+    case List(1, 2, _) :+ 42 => "lala" // infix pattern
+    case List(_, _*)         =>
+    case Nil                 =>
   }
 
   // 6 - type specifiers
   val unknown: Any = 2
   val unknownMatch = unknown match {
     case list: List[Int] => // explicit type specifier
-    case _ =>
+    case _               =>
   }
 
   // 7 - name binding
   val nameBindingMatch = aList match {
-    case nonEmptyList @ Cons(_, _) => // name binding => use the name later(here)
+    case nonEmptyList @ Cons(
+          _,
+          _
+        ) => // name binding => use the name later(here)
     case Cons(1, rest @ Cons(2, _)) => // name binding inside nested patterns
   }
 
@@ -79,7 +85,7 @@ object AllThePatterns extends App {
 
   val anything: Any = ???
   anything match {
-    case _: RuntimeException | _:NullPointerException => ""
+    case _: RuntimeException | _: NullPointerException => ""
   }
 
   // ALL.
@@ -88,11 +94,11 @@ object AllThePatterns extends App {
     Question.
    */
 
-  val numbers = List(1,2,3)
+  val numbers = List(1, 2, 3)
   val numbersMatch = numbers match {
     case listOfStrings: List[String] => "a list of strings"
-    case listOfNumbers: List[Int] => "a list of numbers"
-    case _ => ""
+    case listOfNumbers: List[Int]    => "a list of numbers"
+    case _                           => ""
   }
 
   println(numbersMatch)
