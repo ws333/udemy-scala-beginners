@@ -8,14 +8,18 @@ object Inheritance extends App {
     val value: Int = i
     var next: Node | Null = null
 
-    def getElementsAsString: String = {
-      if (next == null)
-        value.toString()
-      else
-        value + ", " + next.getElementsAsString
+    // @tailrec
+    def getElementsAsString(acc: String = ""): String = {
+      val newValue = acc + ", " + value
+
+      if (next == null) newValue
+      else {
+        val a = if (acc == "") value.toString() else newValue
+        next.getElementsAsString(a)
+      }
     }
 
-    override def toString: String = s"[$getElementsAsString]"
+    override def toString: String = s"[${getElementsAsString()}]"
   }
 
   abstract class MyList {
@@ -55,6 +59,7 @@ object Inheritance extends App {
   }
 
   var aList = new ListA(333)
+
   aList.add(777)
   aList.add(999)
 
