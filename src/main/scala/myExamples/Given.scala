@@ -1,4 +1,4 @@
-package challenges
+package myExamples
 
 import scala.compiletime.ops.int
 

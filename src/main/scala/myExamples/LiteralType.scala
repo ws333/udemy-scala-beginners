@@ -1,4 +1,4 @@
-package challenges
+package myExamples
 
 object LiteralType extends App {
   type AllowedOptions = 3 | 4
